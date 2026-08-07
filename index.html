@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#ffe8f0" />
+  <title>Hey, You 💕 — Something Special</title>
+  <meta name="description" content="A special little something made just for you, coded with love." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Floating hearts background -->
+  <div class="hearts-bg" id="heartsBg"></div>
+
+  <!-- PAGE WRAPPER -->
+  <div class="page-container" id="pageContainer">
+
+    <!-- PAGE 1 — Welcome / Loading Screen -->
+    <div class="page active" id="page1">
+      <div class="card card-pink">
+        <div class="petal petal-tl"></div>
+        <div class="petal petal-tr"></div>
+        <div class="petal petal-br"></div>
+        <div class="page1-content">
+          <h1 class="hey-you">Hey, you <span class="heart-anim">🩷</span></h1>
+          <p class="subtitle">I made something<br/>special for you...</p>
+          <div class="char-img-wrap">
+            <img src="assets/boy_flowers.png" alt="Boy with flowers" class="char-img float-anim" />
+          </div>
+          <div class="loading-section">
+            <p class="loading-label">Loading something cute...</p>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+            <p class="progress-text" id="progressText">0%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 2 — Why I Made This -->
+    <div class="page" id="page2">
+      <div class="card card-white">
+        <div class="petal petal-tl"></div>
+        <div class="petal petal-tr"></div>
+        <div class="page2-content">
+          <p class="body-text center-text">I'm not really good<br/>at saying things directly.</p>
+          <p class="body-text center-text mt-16">So instead of just texting you,<br/>I decided to ask you the way<br/>I know best...</p>
+          <div class="code-highlight">
+            <p class="by-coding">By coding it</p>
+            <p class="code-tag">&lt;/&gt;</p>
+          </div>
+          <div class="char-img-wrap p2-char">
+            <img src="assets/boy_coding.png" alt="Boy coding" class="char-img float-anim" />
+          </div>
+          <button class="btn btn-pink" onclick="goToPage(3)">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 3 — One Question -->
+    <div class="page" id="page3">
+      <div class="card card-purple night-card">
+        <div class="stars-overlay"></div>
+        <div class="moon">🌙</div>
+        <div class="fairy-lights">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="page3-content">
+          <p class="night-text">There's one question<br/>I've been thinking about...</p>
+          <div class="chat-bubble">
+            <p>Would you let me take you<br/>on a little adventure?</p>
+          </div>
+          <div class="char-img-wrap p3-char">
+            <img src="assets/couple_night.png" alt="Couple at night" class="char-img wide-img" />
+          </div>
+        </div>
+        <button class="btn btn-purple" onclick="goToPage(4)">Yes, tell me more →</button>
+      </div>
+    </div>
+
+    <!-- PAGE 4 — Our Date Plan -->
+    <div class="page" id="page4">
+      <div class="card card-white card-wide">
+        <div class="petal petal-tl"></div>
+        <div class="petal petal-br"></div>
+        <div class="page4-content">
+          <h2 class="plan-title">Here's the plan <span>🩷</span></h2>
+          <div class="plan-list">
+            <div class="plan-item">
+              <span class="plan-num">01</span>
+              <p class="plan-text">Let's go somewhere nice and explore</p>
+              <div class="plan-emoji">🏙️</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-num">02</span>
+              <p class="plan-text">Grab something delicious to eat</p>
+              <div class="plan-emoji">🍕</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-num">03</span>
+              <p class="plan-text">Have coffee (or your favorite drink ☕)</p>
+              <div class="plan-emoji">☕</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-num">04</span>
+              <p class="plan-text">Sit somewhere peaceful and talk</p>
+              <div class="plan-emoji">🌸</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-num">05</span>
+              <p class="plan-text">Talk about everything and nothing</p>
+              <div class="plan-emoji">💬</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-num">06</span>
+              <p class="plan-text">Make one really good memory 📸</p>
+              <div class="plan-emoji">✨</div>
+            </div>
+          </div>
+          <button class="btn btn-pink" onclick="goToPage(5)">Sounds perfect →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 5 — A Small Promise -->
+    <div class="page" id="page5">
+      <div class="card card-pink">
+        <div class="petal petal-tl"></div>
+        <div class="petal petal-tr"></div>
+        <div class="petal petal-br"></div>
+        <div class="page5-content">
+          <div class="small-heart-top">🩷</div>
+          <h2 class="warning-title">Just one warning...</h2>
+          <p class="body-text center-text">I'm actually quite introverted,<br/>so I might be a little nervous<br/>at first. 🙂</p>
+          <p class="body-text center-text mt-16">But I promise, I'll try my best<br/>to make it a beautiful day<br/>for you. 🩷</p>
+          <div class="char-img-wrap p5-char">
+            <img src="assets/boy_shy.png" alt="Shy boy" class="char-img float-anim" />
+          </div>
+          <button class="btn btn-pink" onclick="goToPage(6)">Okay, next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 6 — The Real Question -->
+    <div class="page" id="page6">
+      <div class="card card-white">
+        <div class="petal petal-tl"></div>
+        <div class="petal petal-tr"></div>
+        <div class="petal petal-br"></div>
+        <div class="petal petal-bl"></div>
+        <div class="page6-content">
+          <p class="so-text">So...</p>
+          <h2 class="big-question">Will you go on<br/>a date with me?</h2>
+          <div class="bounce-heart">🩷</div>
+          <div class="char-img-wrap p6-char">
+            <img src="assets/couple_happy.png" alt="Couple" class="char-img wide-img" />
+          </div>
+          <div class="two-btns">
+            <button class="btn btn-pink btn-yes-big" id="yesBtnPage6" onclick="goToPage('7a')">Yes, let's go! 🩷</button>
+          </div>
+          <div class="no-btn-area" id="noBtnArea">
+            <button class="btn btn-no-run" id="noBtnPage6" onmouseenter="runAwayNo(event)" ontouchstart="runAwayNo(event)" onclick="noBtnClicked()">No 🙅</button>
+            <p class="no-hint" id="noHint">⬆️ Click YES above!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 7A — If She Clicks YES -->
+    <div class="page" id="page7a">
+      <div class="card card-white">
+        <div class="petal petal-tl"></div>
+        <div class="petal petal-tr"></div>
+        <div class="confetti-layer" id="confettiLayer"></div>
+        <div class="page7a-content">
+          <h2 class="yay-title">Yay! 🎉</h2>
+          <p class="body-text center-text">Okay, then you choose<br/>the day,<br/>I'll plan the rest. 🥰</p>
+          <div class="char-img-wrap p7a-char">
+            <img src="assets/couple_happy.png" alt="Happy couple" class="char-img wide-img" />
+          </div>
+
+          <!-- ✨ Date Picker Section -->
+          <div class="date-picker-wrap" id="datePickerWrap">
+            <p class="date-picker-label">📅 Pick our special day</p>
+            <div class="date-input-row">
+              <div class="date-input-group">
+                <label for="datePick">Choose a date</label>
+                <input type="date" id="datePick" class="date-input" onchange="onDatePicked()" />
+              </div>
+            </div>
+            <div class="date-chosen-preview" id="dateChosenPreview" style="display:none;">
+              <span class="date-chosen-emoji">🩷</span>
+              <p class="date-chosen-text" id="dateChosenText"></p>
+              <span class="date-chosen-emoji">🩷</span>
+            </div>
+          </div>
+
+          <p class="cant-wait-text">Can't wait to make some<br/>beautiful memories with you! 🩷</p>
+          <button class="btn btn-pink" id="cantWaitBtn" onclick="celebrate()">Can't wait too! 🥰</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PAGE 7B — If She Needs Time -->
+    <div class="page" id="page7b">
+      <div class="card card-purple night-card">
+        <div class="stars-overlay"></div>
+        <div class="moon">🌙</div>
+        <div class="page7b-content">
+          <h2 class="thats-okay">That's okay. 🥺</h2>
+          <h3 class="take-time">Take your time.</h3>
+          <p class="night-text-sm">I just wanted you to know<br/>that I'd really like to spend<br/>some time with you. 🩷</p>
+          <div class="char-img-wrap p7b-char">
+            <img src="assets/boy_bench_night.png" alt="Boy on bench" class="char-img wide-img" />
+          </div>
+        </div>
+        <button class="btn btn-purple" id="thankYouBtn" onclick="showThankYou()">Thank you for reading this 🩷</button>
+      </div>
+    </div>
+
+  </div><!-- end page-container -->
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast">💕 You made his day just by reading this!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
