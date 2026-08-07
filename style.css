@@ -1009,20 +1009,26 @@ html, body {
 
 /* ─── Modal Overlays & Cards ────────────────────────── */
 .modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(46, 31, 82, 0.6);
-  backdrop-filter: blur(6px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
-  padding: 16px;
-  animation: fadeIn 0.3s ease forwards;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(46, 31, 82, 0.75) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 999999 !important;
+  padding: 16px !important;
+  margin: 0 !important;
 }
 
 .modal-overlay.active {
-  display: flex;
+  display: flex !important;
 }
 
 @keyframes fadeIn {

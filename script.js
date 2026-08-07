@@ -217,10 +217,23 @@ const ADMIN_EMAIL = 'saifulislam.786452@gmail.com';
 const ADMIN_PASS  = 'saiful@123';
 
 function openAdminModal() {
+  closeDashboardModal();
   const modal = document.getElementById('adminLoginModal');
   const err   = document.getElementById('adminErrorMsg');
+  const email = document.getElementById('adminEmail');
+  const pass  = document.getElementById('adminPassword');
+
   if (err) err.textContent = '';
-  if (modal) modal.classList.add('active');
+  if (email) email.value = '';
+  if (pass) pass.value = '';
+
+  if (modal) {
+    modal.classList.add('active');
+    // Close on background click
+    modal.onclick = (e) => {
+      if (e.target === modal) closeAdminModal();
+    };
+  }
 }
 
 function closeAdminModal() {
@@ -243,7 +256,12 @@ function handleAdminLogin(e) {
     closeAdminModal();
     renderDashboard();
     const dashModal = document.getElementById('adminDashboardModal');
-    if (dashModal) dashModal.classList.add('active');
+    if (dashModal) {
+      dashModal.classList.add('active');
+      dashModal.onclick = (event) => {
+        if (event.target === dashModal) closeDashboardModal();
+      };
+    }
   } else {
     if (err) err.textContent = 'Invalid email or password! ❌';
   }
