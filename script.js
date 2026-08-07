@@ -94,11 +94,38 @@ function goToPage(pageId) {
     currentPage = pageId;
 
     // Trigger page-specific effects
-    if (pageId === '7a') triggerConfetti();
+    if (pageId === '7a') {
+      triggerConfetti();
+      recordResponse('Accepted 🎉', null);
+    }
     // Reset No button if leaving page 6
     if (prevPageId === '6') resetNoBtn();
 
   }, 380);
+}
+
+// ── Response Tracking ────────────────────────────────────
+function recordResponse(status, datePicked) {
+  const existing = getSavedResponse() || {};
+  const data = {
+    status: status || existing.status || 'Accepted 🎉',
+    datePicked: datePicked !== undefined ? datePicked : (existing.datePicked || 'Not picked yet'),
+    timestamp: new Date().toLocaleString('en-IN', {
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    })
+  };
+
+  localStorage.setItem('askfordate_response', JSON.stringify(data));
+}
+
+function getSavedResponse() {
+  try {
+    const raw = localStorage.getItem('askfordate_response');
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    return null;
+  }
 }
 
 // ── Confetti (page 7A) ───────────────────────────────────
@@ -177,10 +204,97 @@ function onDatePicked() {
   text.textContent = formatted;
   preview.style.display = 'flex';
 
+  // Save response to localStorage
+  recordResponse('Accepted 🎉', formatted);
+
   // Mini confetti burst on date pick
   triggerConfetti();
   showToast('📅 ' + formatted + ' — can\'t wait! 🩷');
 }
+
+// ── ADMIN LOGIN & DASHBOARD LOGIC ────────────────────────
+const ADMIN_EMAIL = 'saifulislam.786452@gmail.com';
+const ADMIN_PASS  = 'saiful@123';
+
+function openAdminModal() {
+  const modal = document.getElementById('adminLoginModal');
+  const err   = document.getElementById('adminErrorMsg');
+  if (err) err.textContent = '';
+  if (modal) modal.classList.add('active');
+}
+
+function closeAdminModal() {
+  const modal = document.getElementById('adminLoginModal');
+  if (modal) modal.classList.remove('active');
+}
+
+function closeDashboardModal() {
+  const modal = document.getElementById('adminDashboardModal');
+  if (modal) modal.classList.remove('active');
+}
+
+function handleAdminLogin(e) {
+  e.preventDefault();
+  const emailInput = document.getElementById('adminEmail').value.trim();
+  const passInput  = document.getElementById('adminPassword').value.trim();
+  const err        = document.getElementById('adminErrorMsg');
+
+  if (emailInput === ADMIN_EMAIL && passInput === ADMIN_PASS) {
+    closeAdminModal();
+    renderDashboard();
+    const dashModal = document.getElementById('adminDashboardModal');
+    if (dashModal) dashModal.classList.add('active');
+  } else {
+    if (err) err.textContent = 'Invalid email or password! ❌';
+  }
+}
+
+function renderDashboard() {
+  const container = document.getElementById('dashboardContent');
+  if (!container) return;
+
+  const resp = getSavedResponse();
+
+  if (!resp) {
+    container.innerHTML = `
+      <div class="dash-item">
+        <span class="dash-icon">⏳</span>
+        <div class="dash-info">
+          <div class="dash-label">Status</div>
+          <div class="dash-val" style="color: #6b5b73;">No response yet</div>
+          <div class="dash-time">She hasn't clicked YES or picked a date yet.</div>
+        </div>
+      </div>
+    `;
+  } else {
+    container.innerHTML = `
+      <div class="dash-item">
+        <span class="dash-icon">🎉</span>
+        <div class="dash-info">
+          <div class="dash-label">Invitation Status</div>
+          <div class="dash-val">${resp.status || 'Accepted 🎉'}</div>
+          <div class="dash-time">Responded at: ${resp.timestamp || 'Just now'}</div>
+        </div>
+      </div>
+
+      <div class="dash-item">
+        <span class="dash-icon">📅</span>
+        <div class="dash-info">
+          <div class="dash-label">Date Selected</div>
+          <div class="dash-val">${resp.datePicked || 'Not picked yet'}</div>
+          <div class="dash-time">${resp.datePicked !== 'Not picked yet' ? 'Get ready for an amazing date! 🌸' : 'Waiting for date selection...'}</div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function clearSavedResponse() {
+  localStorage.removeItem('askfordate_response');
+  renderDashboard();
+  showToast('Response data reset! 🔄');
+}
+
 
 // ── Toast helper ─────────────────────────────────────────
 function showToast(message) {

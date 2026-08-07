@@ -230,6 +230,52 @@
 
   </div><!-- end page-container -->
 
+  <!-- Admin Access Trigger (Secret Lock icon top right) -->
+  <button class="admin-trigger-btn" onclick="openAdminModal()" title="Saiful's Login">🔒</button>
+
+  <!-- ADMIN LOGIN MODAL -->
+  <div class="modal-overlay" id="adminLoginModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeAdminModal()">✕</button>
+      <div class="admin-header">
+        <span class="admin-icon">🔐</span>
+        <h2>Saiful's Portal</h2>
+        <p class="admin-sub">Login to check her response & date selection</p>
+      </div>
+      <form class="admin-form" onsubmit="handleAdminLogin(event)">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="adminEmail" placeholder="saifulislam.786452@gmail.com" required />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="adminPassword" placeholder="••••••••" required />
+        </div>
+        <p class="error-msg" id="adminErrorMsg"></p>
+        <button type="submit" class="btn btn-pink w-100">Login 🔑</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD MODAL -->
+  <div class="modal-overlay" id="adminDashboardModal">
+    <div class="modal-card modal-card-wide">
+      <button class="modal-close" onclick="closeDashboardModal()">✕</button>
+      <div class="admin-header">
+        <span class="admin-icon">💖</span>
+        <h2>Date Response Dashboard</h2>
+        <p class="admin-sub">Live status of your date invitation</p>
+      </div>
+      <div class="dashboard-content" id="dashboardContent">
+        <!-- Injected via JS -->
+      </div>
+      <div class="dashboard-actions">
+        <button class="btn btn-outline" onclick="clearSavedResponse()">Reset / Test Again 🔄</button>
+        <button class="btn btn-purple" onclick="closeDashboardModal()">Close ✕</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast notification -->
   <div class="toast" id="toast">💕 You made his day just by reading this!</div>
 
