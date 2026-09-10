@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
   spawnFloatingHearts();
   startLoadingBar();
 
+  const dateInput = document.getElementById('datePick');
+  if (dateInput) {
+    dateInput.min = new Date().toISOString().split('T')[0];
+  }
+
   // Mobile: also run away on touchmove (finger dragging toward button)
   document.addEventListener('touchmove', (e) => {
     const btn = document.getElementById('noBtnPage6');

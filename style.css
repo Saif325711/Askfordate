@@ -31,7 +31,10 @@ html, body {
   min-height: 100vh;
   overflow-x: hidden;
   font-family: var(--font-main);
-  background: linear-gradient(135deg, #ffe8f0 0%, #ffd6e8 40%, #f8d7f8 100%);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(255,255,255,0.8), transparent 27%),
+    radial-gradient(circle at 88% 85%, rgba(255,183,213,0.42), transparent 31%),
+    linear-gradient(135deg, #ffe8f0 0%, #ffd6e8 40%, #f8d7f8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,6 +76,31 @@ html, body {
   padding: 20px;
 }
 
+.page-container::before,
+.page-container::after {
+  content: '';
+  position: fixed;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  filter: blur(55px);
+  opacity: 0.28;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.page-container::before {
+  top: 8%;
+  left: -110px;
+  background: #ff9dbf;
+}
+
+.page-container::after {
+  right: -100px;
+  bottom: 4%;
+  background: #c2a0ff;
+}
+
 /* ─── Individual pages ────────────────────────────── */
 .page {
   position: absolute;
@@ -111,6 +139,24 @@ html, body {
   flex-direction: column;
   align-items: center;
   gap: 14px;
+  isolation: isolate;
+  backdrop-filter: blur(8px);
+  animation: cardFloat 7s ease-in-out infinite;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 .card-wide {
@@ -131,6 +177,16 @@ html, body {
   background: linear-gradient(160deg, #2e1f52 0%, #3f2d72 60%, #5a3890 100%);
   border: 1.5px solid #6b4fa033;
   color: #f0e8ff;
+}
+
+.story-kicker {
+  color: var(--pink-strong);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0.8;
 }
 
 /* ─── Decorative petals / flowers ────────────────── */
@@ -220,6 +276,12 @@ html, body {
   object-fit: contain;
   border-radius: 12px;
   filter: drop-shadow(0 4px 12px rgba(200, 80, 120, 0.2));
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.char-img:hover {
+  transform: translateY(-5px) scale(1.025);
+  filter: drop-shadow(0 12px 18px rgba(200, 80, 120, 0.28));
 }
 
 .wide-img {
@@ -254,6 +316,24 @@ html, body {
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   box-shadow: 0 6px 20px rgba(200, 80, 120, 0.25);
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.38), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.55s ease;
+}
+
+.btn:hover::before {
+  left: 130%;
 }
 
 .btn:hover {
@@ -327,6 +407,7 @@ html, body {
   text-align: center;
   line-height: 1.7;
   font-weight: 600;
+  letter-spacing: 0.15px;
 }
 
 .body-text {
@@ -395,7 +476,7 @@ html, body {
 }
 
 .code-highlight {
-  background: #fff0f6;
+  background: linear-gradient(135deg, #fff0f6, #fff8fb);
   border: 2px dashed #ffb8cb;
   border-radius: 16px;
   padding: 14px 28px;
@@ -488,6 +569,7 @@ html, body {
   padding: 10px 14px;
   border-left: 4px solid var(--pink-mid);
   transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(200,80,120,0.04);
 }
 
 .plan-item:hover {
@@ -562,6 +644,7 @@ html, body {
   color: var(--pink-strong);
   text-align: center;
   line-height: 1.35;
+  text-shadow: 0 5px 18px rgba(255,107,157,0.14);
 }
 
 .bounce-heart {
@@ -692,6 +775,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75), 0 8px 22px rgba(255,107,157,0.08);
 }
 
 .date-picker-label {
@@ -827,6 +911,8 @@ html, body {
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s;
   opacity: 0;
   white-space: nowrap;
+  max-width: min(92vw, 440px);
+  text-align: center;
 }
 
 .toast.show {
@@ -1216,4 +1302,3 @@ html, body {
   padding: 12px 16px;
   font-size: 0.88rem;
 }
-
